@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useParams} from "react-router-dom";
-
-
+import { useParams } from "react-router-dom";
+import { Container, Row, Col, Card, CardHeader, CardBody, CardFooter } from 'react-bootstrap';
 
 const CursosList = () => {
     const [cursos, setCursos] = useState([]);
@@ -19,14 +18,24 @@ const CursosList = () => {
     }, [semestreId]);
 
     return (
-        <div>
-            <h2>Cursos del Semestre</h2>
-            <ul>
+        <Container>
+            <h2 className="text-center mt-3 mb-3">Lista de Cursos</h2>
+            <Row xs={1} md={3} className="g-4">
                 {cursos.map(curso => (
-                    <li key={curso.id}>{curso.nombre}</li>
+                    <Col key={curso.id_curso}>
+                        <Card>
+                            <CardHeader className="bg-dark text-white text-center font-weight-bold">
+                                {curso.nombre}
+                            </CardHeader>
+                            <CardBody>
+                                <p>{curso.descripcion}</p>
+                            </CardBody>
+
+                        </Card>
+                    </Col>
                 ))}
-            </ul>
-        </div>
+            </Row>
+        </Container>
     );
 };
 
